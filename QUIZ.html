@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <meta charset="UTF-8"> 
+        <title>QUIZ</title>
+        <style>
+            body{
+                align-content: center;
+                text-align: center;
+                font-family:Arial;                
+            }
+            
+            input[type=text] {                	
+            }
+
+            input[type=button] {
+                width: 640px;                
+            }
+            input{
+                font-family: Arial;
+                border-radius: 10px;
+                box-shadow: 10px 10px 5px #888888;
+                background-color: aqua;
+                text-transform: uppercase;	
+                font-weight: bold;
+                font-size: 18;
+                text-align: center;
+                height: 30px;
+            }
+
+
+        </style>
+        <script>
+            function Avancar(Resposta) {
+                var Acertos = parseInt(document.querySelector("#TotalAcertos").value);
+                var Pergunta = parseInt(document.querySelector("#Numero").value);
+
+                Acertos = Acertos + ValidarResposta2(Pergunta, Resposta);							
+                document.querySelector("#TotalAcertos").value = Acertos;	
+                ProximaPergunta(Pergunta)
+
+            }
+            function ValidarResposta2(Pergunta, Resposta) {
+                var respostas = ['C','D','A','D'];
+                var acerto = 0;
+
+                if (respostas[Pergunta-1] == Resposta) {
+                    acerto = 1
+                }
+                return acerto
+            }       
+
+            function ValidarResposta(Pergunta, Resposta) {
+                var acerto = 0;
+                if (Pergunta == 1) {
+                    if (Resposta == 'C') {
+                        acerto = 1;
+                    }
+                    else {
+                        acerto = 0;
+                    }
+                }
+                else if (Pergunta == 2) {
+                    if (Resposta == 'D') {
+                        acerto = 1;
+                    }
+                    else {
+                        acerto = 0;
+                    }
+                }
+                else if (Pergunta == 3) {
+                    if (Resposta == 'A') {
+                        acerto = 1;
+                    }
+                    else {
+                        acerto = 0;
+                    }
+                }
+                else if (Pergunta == 4) {
+                    if (Resposta == 'D') {
+                        acerto = 1;
+                    }
+                    else {
+                        acerto = 0;
+                    }
+                }
+                return acerto;
+            }
+            function ProximaPergunta(Pergunta) {
+                var Numero = Pergunta;
+                var ProximaPergunta = '';
+                var AlternativaA = '';
+                var AlternativaB = '';
+                var AlternativaC = '';
+                var AlternativaD = '';
+            
+                if (Pergunta == 0) {
+                    Numero = 1;
+                    ProximaPergunta = "De quem é a famosa frase “Penso, logo existo”?";
+                    AlternativaA = "Platão";
+                    AlternativaB = "Galileu Galilei";
+                    AlternativaC = "Descartes";
+                    AlternativaD = "Sócrates";
+                }
+                else if (Pergunta == 1) {
+                    Numero = 2;
+                    ProximaPergunta = "Quem foi o primeiro homem a pisar na Lua?";
+                    AlternativaA = "Yuri Gagarin";
+                    AlternativaB = "Buzz Aldrin";
+                    AlternativaC = "Charles Duke";
+                    AlternativaD = "Neil Armstrong";
+                }
+                else if (Pergunta == 2) {
+                    Numero = 3;
+                    ProximaPergunta = "Quanto tempo a luz do Sol demora para chegar à Terra?";
+                    AlternativaA = "8 minutos";
+                    AlternativaB = "24 horas";
+                    AlternativaC = "12 minutos";
+                    AlternativaD = "12 segundos";
+                }
+                else if (Pergunta == 3){
+                    Numero = 4;
+                    ProximaPergunta = "Quantas casas decimais tem o número Pi?";
+                    AlternativaA = "duas";
+                    AlternativaB = "cem";
+                    AlternativaC = "mil";
+                    AlternativaD = "infinitas";
+                }
+                else {
+                    Acertos = parseInt(document.querySelector("#TotalAcertos").value);
+                    document.querySelector("#Quiz").innerHTML = "<h2>Parabéns!<br><br> Você acertou " + Acertos + " de " + Pergunta + " Perguntas.</h2><br><br><INPUT TYPE='BUTTON' NAME='RefazerQuiz' VALUE='Refazer Quiz' ID='REfazerQuiz' style='text-align:center;font-size:16pt;height:30px;width:200px;' onclick='window.location.reload();'/>";
+                }
+                
+
+                document.querySelector("#Numero").value = Numero;	
+                document.querySelector("#Pergunta").value = ProximaPergunta;	
+                document.querySelector("#AlternativaA").value = AlternativaA;	
+                document.querySelector("#AlternativaB").value = AlternativaB;	
+                document.querySelector("#AlternativaC").value = AlternativaC;	
+                document.querySelector("#AlternativaD").value = AlternativaD;
+	
+        
+            }
+        </script>
+    </head>
+    <body onload="ProximaPergunta(0)">
+        <img src="C:\Users\Luís C\Desktop\quiz.jpg" alt="QUIZ" height="240" width="320">
+        <div id="Quiz">
+            <INPUT TYPE="TEXT" NAME="Numero" VALUE="0" ID="Numero" disabled 
+            style="width:30px"/>
+            &nbsp
+            <INPUT TYPE="TEXT" NAME="Pergunta" VALUE="Pergunta 0" ID="Pergunta" disabled 
+            style="width:600px"/>
+            <br><br><br><br>
+
+            <INPUT  TYPE="BUTTON" NAME="AlternativaA" VALUE="Alternativa A" ID="AlternativaA" onclick="Avancar('A');"/>
+            <br><br>
+            <INPUT TYPE="BUTTON" NAME="AlternativaB" VALUE="Alternativa B" ID="AlternativaB" onclick="Avancar('B');"/>
+            <br><br>
+            <INPUT TYPE="BUTTON" NAME="AlternativaC" VALUE="Alternativa C" ID="AlternativaC" onclick="Avancar('C');"/>
+            <br><br>
+            <INPUT  TYPE="BUTTON" NAME="AlternativaD" VALUE="Alternativa D" ID="AlternativaD" onclick="Avancar('D');"/>
+            <br><br>
+            <INPUT TYPE="TEXT" NAME="Acertos" VALUE="Acertos" ID="Acertos" disabled 
+            style="width:100px"/>
+            &nbsp
+            <INPUT TYPE="TEXT" NAME="TotalAcertos" VALUE="0" ID="TotalAcertos" disabled 
+            style="width:30px"/>
+        </div>
+    </body>
+</html>
